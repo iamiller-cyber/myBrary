@@ -1,46 +1,46 @@
 body {
-    display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
 }
 
 header {
-    background-color: bisque;
-    height: 100%;
+  background-color: bisque;
+  height: 100%;
 }
 
 #library {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)) 
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
 }
 
 .bookcard {
-    border: 2px solid rgb(228, 13, 13);
-    background-color: black;
-    color: white;
-    display: grid;
-    justify-items: center;
-    margin: 1rem;
-    gap: 1rem;
-    padding: 1rem;
+  border: 2px solid rgb(228, 13, 13);
+  background-color: black;
+  color: white;
+  display: grid;
+  justify-items: center;
+  margin: 1rem;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .delete {
-    background-color: red;
-    width: 10px;
-    height: 10px;
+  background-color: red;
+  width: 10px;
+  height: 10px;
 }
 
 .read,
 .unread {
-    width: 10px;
-    height: 10px;
+  width: 10px;
+  height: 10px;
 }
 
 .read {
-    background-color: green;
+  background-color: green;
 }
 
 .unread {
-    background-color: red;
+  background-color: red;
 }

@@ -1,42 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>myBrary!</title>
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header>
-        <ul>
-            <li><a href="twitter"></a></li>
-            <li><a href="fb"></a></li>
-            <li><a href="insta"></a></li>
-        </ul>
-        <h2>myBrary</h2>
-        <button>Log-in</button>
-        <form action="" method="get">
-            <input type="text" name="title" id="title" placeholder="Title" required>
-            <input type="text" name="author"id="author" placeholder="Author" required>
-            <input type="number" name="pages" id="pages" placeholder="Pages" required>
-            <label for="read">Have you read it?</label>
-            <input type="checkbox" name="read" id="read">
-            <label for="wishlist">Do you want to put it on your wishlist?</label>
-            <input type="checkbox" name="wish" id="wishlist">
-            <button id="sub">Sub</button>
-        </form>
+      <ul>
+        <li><a href="twitter"></a></li>
+        <li><a href="fb"></a></li>
+        <li><a href="insta"></a></li>
+      </ul>
+      <h2>myBrary</h2>
+      <button>Log-in</button>
+      <form action="" method="get">
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Title"
+          required
+        />
+        <input
+          type="text"
+          name="author"
+          id="author"
+          placeholder="Author"
+          required
+        />
+        <input
+          type="number"
+          name="pages"
+          id="pages"
+          placeholder="Pages"
+          required
+        />
+        <label for="read">Have you read it?</label>
+        <input type="checkbox" name="read" id="read" />
+        <label for="wishlist">Do you want to put it on your wishlist?</label>
+        <input type="checkbox" name="wish" id="wishlist" />
+        <button id="sub">Sub</button>
+      </form>
     </header>
-    <div id="library">
-    </div>
+    <div id="library"></div>
     <div class="info">
-            <h3>Your Life in Books!</h3>
-            <ul>
-                <li id="bookNum">Books: </li>
-                <li id="pageNum">Total Pages: </li>
-                <li>Wish-list: </li>
-            </ul>
+      <h3>Your Life in Books!</h3>
+      <ul>
+        <li id="bookNum">Books:</li>
+        <li id="pageNum">Total Pages:</li>
+        <li>Wish-list:</li>
+      </ul>
     </div>
-</body>
+  </body>
 </html>
