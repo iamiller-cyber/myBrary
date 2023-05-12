@@ -31,6 +31,7 @@ const bc = document.getElementsByClassName("bookcard");
 const sub = document.getElementById("sub");
 const totalBooks = document.getElementById("bookNum");
 const totalPages = document.getElementById("pageNum");
+const wishButton = document.getElementById("wishBut");
 
 function createBookCard(book) {
   const bookCard = document.createElement("div");
@@ -63,10 +64,18 @@ function createBookCard(book) {
   lib.appendChild(bookCard);
 }
 
-function displayBooks() {
+function displayBooks(e) {
+  let myRead = myLibrary.filter((book) => book.read);
+  let totalP = myRead.reduce((sum, book) => sum + book.pages, 0);
   eraseBooks();
-  myLibrary.forEach((book) => createBookCard(book));
-  totalBooks.textContent = `${myLibrary.length}`;
+  if (e.target.id == "sub") {
+    myLibrary.forEach((book) => createBookCard(book));
+    totalBooks.textContent = `Books: ${myLibrary.length}`;
+    totalPages.textContent = `Total pages read: ${totalP}`;
+  } else {
+    myWishList.forEach((book) => createBookCard(book));
+    totalBooks.textContent = `Wishes: ${myWishList.length}`;
+  }
 }
 
 function eraseBooks() {
@@ -85,10 +94,11 @@ function addBook(e) {
   if (t.value == "" || a.value == "" || p.value == "") {
     return;
   }
+
   let book = {
     title: t.value,
     author: a.value,
-    pages: p.value,
+    pages: Number(p.value),
   };
   if (checkRead.checked) {
     book.read = true;
@@ -102,14 +112,15 @@ function addBook(e) {
 document.addEventListener("DOMContentLoaded", () => {
   sub.addEventListener("click", addBook);
   sub.addEventListener("click", displayBooks);
+  wishButton.addEventListener("click", displayBooks);
 });
 
 function readBook(e) {
   if (e.target.classList.contains("read")) {
     e.target.classList.replace("read", "unread");
-    myLibrary[e.target.data.index].read = false;
+    myLibrary[e.target.dataset.index].read = false;
   } else {
     e.target.classList.replace("unread", "read");
-    myLibrary[e.target.data.index].read = true;
+    myLibrary[e.target.dataset.index].read = true;
   }
 }
