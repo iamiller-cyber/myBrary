@@ -1,23 +1,22 @@
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(title, author, pages, read) {
+    {
+      (this.title = title),
+        (this.author = author),
+        (this.pages = pages),
+        (this.read = read);
+    }
+  }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages}, ${this.read}`;
-};
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages}, ${this.read}`;
+  }
+}
 
 let myLibrary = [];
 let myWishList = [];
 
-let bookOne = {
-  title: "Blood Meridien",
-  author: "Cormak McKarthy",
-  pages: 34,
-  read: true,
-};
+let bookOne = new Book("Blood Meridien", "Cormak McKarthy", 34, true);
 
 myLibrary.push(bookOne);
 
@@ -65,16 +64,15 @@ function createBookCard(book) {
 }
 
 function displayBooks(e) {
-  let myRead = myLibrary.filter((book) => book.read);
-  let totalP = myRead.reduce((sum, book) => sum + book.pages, 0);
-  eraseBooks();
-  if (e.target.id == "sub") {
+  let totalP = getPagesRead();
+  myLibrary.forEach((book) => createBookCard(book));
+  totalBooks.textContent = `Books: ${myLibrary.length}`;
+  totalPages.textContent = `Total pages read: ${totalP}`;
+  if (e && e.target.id === "sub") {
+    eraseBooks();
     myLibrary.forEach((book) => createBookCard(book));
     totalBooks.textContent = `Books: ${myLibrary.length}`;
     totalPages.textContent = `Total pages read: ${totalP}`;
-  } else {
-    myWishList.forEach((book) => createBookCard(book));
-    totalBooks.textContent = `Wishes: ${myWishList.length}`;
   }
 }
 
@@ -86,6 +84,9 @@ function eraseBooks() {
 
 function removeCard(e) {
   myLibrary.splice(e.target.dataset.index, 1);
+  let totalP = getPagesRead();
+  totalPages.textContent = `Total pages read: ${totalP}`;
+  eraseBooks();
   displayBooks();
 }
 
@@ -115,12 +116,23 @@ document.addEventListener("DOMContentLoaded", () => {
   wishButton.addEventListener("click", displayBooks);
 });
 
+function getPagesRead() {
+  let myRead = myLibrary.filter((book) => book.read);
+  return myRead.reduce((sum, book) => sum + book.pages, 0);
+}
+
 function readBook(e) {
   if (e.target.classList.contains("read")) {
     e.target.classList.replace("read", "unread");
     myLibrary[e.target.dataset.index].read = false;
+    let totalP = getPagesRead();
+    totalPages.textContent = `Total pages read: ${totalP}`;
   } else {
     e.target.classList.replace("unread", "read");
     myLibrary[e.target.dataset.index].read = true;
+    let totalP = getPagesRead();
+    totalPages.textContent = `Total pages read: ${totalP}`;
   }
 }
+
+displayBooks();
